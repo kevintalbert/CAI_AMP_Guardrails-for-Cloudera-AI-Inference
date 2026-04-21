@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+
+# NeMo Guardrails
+demo_simple/
+demo_advanced/
+
+# Secrets
+api-key.txt
+*.key
+
+# IDE
+.DS_Store
+.cursor/

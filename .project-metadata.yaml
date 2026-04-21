@@ -1,0 +1,51 @@
+name: NeMo Guardrails Proxy
+description: |
+  A proxy application that sits in front of any OpenAI-compatible model endpoint,
+  applying NVIDIA NeMo Guardrails to all traffic. Configure programmable guardrails
+  (input safety, output moderation, jailbreak detection, PII masking, and more)
+  through a web UI styled after Cloudera AI Agent Studio.
+  The proxy passes through your Bearer token transparently to the downstream model.
+author: Cloudera Inc.
+specification_version: 1.0
+prototype_version: 1.0
+date: "2026-03-31"
+
+runtimes:
+  - editor: PBJ Workbench
+    kernel: Python 3.12
+    edition: Standard
+
+tasks:
+  - type: run_session
+    name: Install Python Dependencies
+    script: startup_scripts/install_deps.py
+    short_summary: Install Python dependencies from requirements.txt (includes nodeenv for Node.js)
+    kernel: python3
+    cpu: 2
+    memory: 8
+
+  - type: run_session
+    name: Build Frontend
+    script: startup_scripts/build_frontend.py
+    short_summary: >-
+      Bootstrap Node.js via nodeenv (pip-installed) and build the Next.js
+      frontend. No system npm or node required.
+    kernel: python3
+    cpu: 2
+    memory: 4
+
+  - type: start_application
+    name: NeMo Guardrails Proxy
+    short_summary: Start the NeMo Guardrails Proxy web application
+    long_summary: >-
+      Launches the FastAPI backend that serves both the web UI (at /) and the
+      OpenAI-compatible proxy API (at /api/chat/completions). Configure guardrails
+      and endpoints through the web interface, then point your AI clients at this
+      application instead of your model endpoint directly.
+    subdomain: guardrails-proxy
+    script: startup_scripts/launch_app.py
+    bypass_authentication: true
+    cpu: 4
+    memory: 16
+    environment_variables:
+      TASK_TYPE: START_APPLICATION

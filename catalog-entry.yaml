@@ -1,0 +1,56 @@
+name: NeMo Guardrails Proxy for Cloudera AI Inference
+
+entries:
+  - title: NeMo Guardrails Proxy for Cloudera AI Inference
+    label: guardrails-for-cloudera-ai-inference
+    short_description: |
+      A programmable guardrails proxy that sits in front of any OpenAI-compatible
+      model endpoint, applying NVIDIA NeMo Guardrails to all AI traffic.
+    long_description: |
+      This AMP deploys a proxy application that intercepts requests to any OpenAI-compatible
+      model endpoint and runs them through NVIDIA NeMo Guardrails before forwarding to the
+      downstream model. Your existing Bearer token is passed through transparently, making
+      this a drop-in addition to any existing Cloudera AI Inference Service workflow.
+
+      Key capabilities:
+      - Proxy API: Drop-in replacement at /api/chat/completions — works with any OpenAI SDK
+        by pointing base_url at this application
+      - Programmable guardrails: Input safety, output moderation, jailbreak detection, PII
+        masking, hallucination detection, fact checking, and more via NeMo Guardrails
+      - Web UI: Cloudera-styled interface to configure guardrails, manage target endpoints,
+        and interactively test rail behavior with a built-in chat console
+      - Rail Builder: Toggle-based form covering all built-in NeMo Guardrails library rails
+        (LLM self-checking, LlamaGuard, Presidio PII, ActiveFence, Pangea AI Guard, and more)
+      - Code Editor: Full YAML and Colang editors (Monaco/VS Code engine) for advanced
+        guardrail customization
+      - Hot-reload: Rail configuration changes apply instantly without restarting the server
+      - Streaming support: Detects and respects stream=true from client requests
+
+      ---------------------------
+      IMPORTANT: Please read the following before proceeding.
+      This AMP includes or otherwise depends on certain third-party software packages.
+      Information about such third-party software packages are made available in the notice
+      file associated with this AMP. By configuring and launching this AMP, you will cause
+      such third-party software packages to be downloaded and installed into your environment,
+      in some instances, from third parties' websites. For each third-party software package,
+      please see the notice file and the applicable websites for more information, including
+      the applicable license terms.
+      If you do not wish to download and install the third-party software packages, do not
+      configure, launch, or otherwise use this AMP. By configuring, launching, or otherwise
+      using the AMP, you acknowledge the foregoing statement and agree that Cloudera is not
+      responsible or liable in any way for the third-party software packages.
+    image_path: "https://raw.githubusercontent.com/kevintalbert/CAI_AMP_Guardrails-for-Cloudera-AI-Inference/main/assets/amp-cover.jpg"
+    tags:
+      - NeMo Guardrails
+      - AI Safety
+      - LLM Proxy
+      - Content Moderation
+      - Jailbreak Detection
+      - PII Detection
+      - Cloudera AI Inference
+      - OpenAI Compatible
+    git_url: "https://github.com/kevintalbert/CAI_AMP_Guardrails-for-Cloudera-AI-Inference.git"
+    git_ref: "main"
+    is_prototype: true
+    is_community: false
+    is_new: true
